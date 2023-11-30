@@ -11,9 +11,9 @@ export class ProductService {
   private myAppUrl: string;
   private myApiUrl: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'api/productos/'
+    this.myApiUrl = 'api/subcategorias/'
   }
 
   getListProducts(): Observable<Product[]> {
