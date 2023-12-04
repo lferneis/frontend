@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 // Modulos
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 // Componentes
@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { AddEditProductComponent } from './components/add-edit-product/add-edit-product.component';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
+import { AddTokenInterceptor } from './utils/add-error.interceptor';
 
 
 @NgModule({
@@ -36,7 +37,9 @@ import { ProgressBarComponent } from './shared/progress-bar/progress-bar.compone
       positionClass: 'toast-bottom-right'
     }), // ToastrModule added
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
